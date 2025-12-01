@@ -16,41 +16,43 @@ export default function NavBar() {
 
   return (
     <header className="navbar">
-      <div className="navbar-logo">
-        <img
-          src={logoImg}
-          alt="FormFit logo"
-          className="navbar-logo-img"
-        />
-        <span className="navbar-logo-text">FormFit</span>
+      {/* NEW inner container so we can center the whole cluster */}
+      <div className="navbar-inner">
+        <div className="navbar-logo">
+          <img
+            src={logoImg}
+            alt="FormFit logo"
+            className="navbar-logo-img"
+          />
+          <span className="navbar-logo-text">FormFit</span>
+        </div>
+
+        <nav className="navbar-links">
+          {session && (
+            <>
+              <NavLink to="/" end>
+                Dashboard
+              </NavLink>
+              <NavLink to="/workouts">Workouts</NavLink>
+              <NavLink to="/sleep">Sleep</NavLink>
+              <NavLink to="/journal">Journal</NavLink>
+              <NavLink to="/progress">Progress</NavLink>
+            </>
+          )}
+
+          {session ? (
+            <button
+              type="button"
+              className="nav-logout-btn"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          ) : (
+            <NavLink to="/auth">Sign In</NavLink>
+          )}
+        </nav>
       </div>
-
-      <nav className="navbar-links">
-        {session && (
-          <>
-            <NavLink to="/" end>
-              Dashboard
-            </NavLink>
-            <NavLink to="/workouts">Workouts</NavLink>
-            <NavLink to="/sleep">Sleep</NavLink>
-            <NavLink to="/journal">Journal</NavLink>
-            <NavLink to="/progress">Progress</NavLink>
-          </>
-        )}
-
-        {/* Auth button on the far right */}
-        {session ? (
-          <button
-            type="button"
-            className="nav-logout-btn"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        ) : (
-          <NavLink to="/auth">Sign In</NavLink>
-        )}
-      </nav>
     </header>
   );
 }
