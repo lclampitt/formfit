@@ -1,0 +1,486 @@
+/* Generic block card (for charts, sections) */
+.block-card {
+  background: var(--card-bg);
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.09);
+  margin-bottom: 1rem;
+}
+
+/* Generic card alias so components can just use "card" */
+.card {
+  background: var(--card-bg);
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.09);
+}
+
+/* Summary cards on dashboard */
+.summary-card {
+  background: var(--card-bg);
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  padding: 0.9rem 1rem;
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.08);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  /* animation added below */
+}
+
+/* clickable variant */
+.summary-card.clickable {
+  cursor: pointer;
+}
+
+.summary-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), transparent);
+  pointer-events: none;
+}
+
+.summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.16);
+}
+
+.summary-card-title {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+
+.summary-card-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.summary-card-subtitle {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+
+/* Color variants for dashboard cards */
+.summary-card--orange {
+  border-top: 4px solid #ff9a62;
+}
+
+.summary-card--purple {
+  border-top: 4px solid #7366ff;
+}
+
+.summary-card--green {
+  border-top: 4px solid #2ecc71;
+}
+
+/* Dashboard checklist + weekly summary */
+
+.checklist-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.checklist-icon {
+  width: 1.2rem;
+  text-align: center;
+}
+
+/* Weekly summary mini grid */
+.weekly-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.weekly-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.weekly-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.weekly-sub {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* Dashboard layout helpers */
+.dashboard-summary-row {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin-bottom: 1.8rem;
+}
+
+.dashboard-today-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  margin-bottom: 1.5rem;
+}
+
+/* Fade/slide-in animation for dashboard cards */
+@keyframes dashCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.summary-card {
+  animation: dashCardIn 0.4s ease forwards;
+  opacity: 0;
+}
+
+/* stagger the three summary cards a bit */
+.dashboard-summary-row .summary-card:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.dashboard-summary-row .summary-card:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.dashboard-summary-row .summary-card:nth-child(3) {
+  animation-delay: 0.19s;
+}
+
+/* subtle animation for block cards in dashboard sections */
+.dashboard-card-anim {
+  animation: dashCardIn 0.45s ease 0.25s forwards;
+  opacity: 0;
+}
+
+.checklist-click {
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 0.35rem 0.55rem;
+  transition: background 0.15s ease, transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.checklist-click:hover {
+  background: rgba(115, 102, 255, 0.08);
+  transform: translateX(3px);
+  box-shadow: 0 4px 10px rgba(148, 163, 184, 0.35);
+}
+
+/* Main content container */
+.app-main {
+  max-width: 1100px;
+  margin: 1.5rem auto 3rem;
+  padding: 0 1rem;
+  animation: pageFadeIn 0.4s ease;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Workout Logger (FormFit) ===== */
+
+.workout-logger {
+  margin-top: 0.5rem;
+}
+
+.workout-title {
+  margin-bottom: 0.25rem;
+}
+
+.workout-subtext {
+  margin-top: 0;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.workout-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.workout-header label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.workout-header input {
+  min-width: 180px;
+}
+
+.workout-header-name {
+  flex: 1;
+}
+
+.exercise-adder {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.exercise-adder input {
+  flex: 1;
+}
+
+.exercise-block {
+  margin-bottom: 0.75rem;
+}
+
+.exercise-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.sets-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.sets-table th,
+.sets-table td {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+  padding: 0.35rem 0.5rem;
+  text-align: left;
+}
+
+.sets-table th {
+  font-weight: 600;
+  background: rgba(249, 250, 251, 0.9);
+}
+
+.sets-table tr:last-child td {
+  border-bottom: none;
+}
+
+.sets-table input {
+  width: 100%;
+}
+
+/* buttons */
+
+.add-set-btn {
+  margin-top: 0.5rem;
+}
+
+.danger-btn {
+  background: #fee2e2;
+  box-shadow: none;
+  color: #b91c1c;
+}
+
+.danger-btn:hover {
+  background: #fecaca;
+  box-shadow: none;
+}
+
+.small-btn {
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+}
+
+/* history */
+
+.history-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.history-title {
+  margin: 0;
+}
+
+.history-card {
+  margin-bottom: 0.75rem;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.history-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.history-toggle {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.history-body {
+  margin-top: 0.5rem;
+}
+
+.history-exercise h4 {
+  margin: 0.4rem 0 0.2rem;
+}
+
+.workout-message {
+  margin-top: 0.5rem;
+  color: var(--muted);
+}
+
+.save-btn {
+  margin-top: 0.75rem;
+}
+
+/* ===== Progress page: weight & body fat charts ===== */
+
+.progress-page .page-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.clear-progress-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  background: linear-gradient(90deg, #ff6cab, #ff9a62);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(249, 115, 129, 0.25);
+}
+
+.clear-progress-btn:hover {
+  opacity: 0.9;
+}
+
+.progress-input-card {
+  margin-bottom: 1.5rem;
+}
+
+.progress-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.progress-form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.progress-form-field {
+  flex: 1 1 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.progress-form-field label {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.progress-form-field input {
+  padding: 0.5rem 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  font-size: 0.9rem;
+}
+
+.primary-btn {
+  align-self: flex-start;
+  border-radius: 999px;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  background: linear-gradient(90deg, #ff6cab, #ff9a62, #7366ff);
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* grid of the two charts */
+.progress-charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.25rem;
+}
+
+.chart-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-header {
+  margin-bottom: 0.5rem;
+}
+
+.chart-title {
+  margin: 0;
+}
+
+.chart-subtitle {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.chart-body {
+  height: 260px;
+}
+
+.chart-empty {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin-top: 1rem;
+}
+
+/* mobile tweaks */
+@media (max-width: 640px) {
+  .progress-page .page-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,32 @@
+.navbar {
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid rgba(0, 207, 255, 0.3);
+  background: radial-gradient(circle at top left, rgba(0, 207, 255, 0.15), transparent);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar-links a {
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.navbar-links a.active {
+  color: var(--bg);
+  background-color: var(--accent);
+}
