@@ -9,7 +9,9 @@ import {
   CartesianGrid,
 } from "recharts";
 
+// Simple line chart for sleep hours over time
 export default function SleepChart({ sleepLog = [] }) {
+  // If there’s no data yet, just show a hint
   if (!sleepLog.length) {
     return (
       <p style={{ color: "#9ca3af", fontSize: "0.9rem" }}>
@@ -18,6 +20,7 @@ export default function SleepChart({ sleepLog = [] }) {
     );
   }
 
+  // Sort entries by date and map into Recharts-friendly format
   const data = sleepLog
     .slice()
     .sort((a, b) => a.date.localeCompare(b.date))
@@ -26,6 +29,7 @@ export default function SleepChart({ sleepLog = [] }) {
       hours: Number(entry.hours),
     }));
 
+  // Basic line chart, nothing fancy
   return (
     <div style={{ width: "100%", height: 260 }}>
       <ResponsiveContainer>

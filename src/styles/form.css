@@ -1,3 +1,4 @@
+/* Generic card for forms across the app */
 .form-card {
   background: var(--card-bg);
   border-radius: 18px;
@@ -7,6 +8,7 @@
   box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
 }
 
+/* Single-column row spacing */
 .form-row {
   display: flex;
   flex-direction: column;
@@ -14,6 +16,7 @@
   margin-bottom: 0.75rem;
 }
 
+/* Inline row for multiple fields on one line */
 .form-row-inline {
   display: flex;
   flex-wrap: wrap;
@@ -21,11 +24,13 @@
   margin-bottom: 0.75rem;
 }
 
+/* Label styling shared across forms */
 label {
   font-size: 0.8rem;
   color: var(--muted);
 }
 
+/* Base styles for inputs, selects, textareas */
 input,
 select,
 textarea {
@@ -50,6 +55,7 @@ textarea {
 }
 
 /* Buttons */
+/* Note: this intentionally targets .primary-btn AND bare button */
 .primary-btn,
 button {
   border: none;

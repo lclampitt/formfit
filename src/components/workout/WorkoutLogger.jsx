@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
+// Legacy workout logger that stores everything in localStorage
 export default function WorkoutLogger() {
   const [workouts, setWorkouts] = useLocalStorage("formfit_workouts", []);
 
+  // Editor state for the workout being built/edited
   const [workoutDate, setWorkoutDate] = useState(
     new Date().toISOString().slice(0, 10)
   );
@@ -16,6 +18,7 @@ export default function WorkoutLogger() {
 
   // === Exercise & set management ===
 
+  // Add a new exercise block with one empty set
   const addExercise = () => {
     if (!newExercise.trim()) return;
     setExercises([
@@ -28,18 +31,21 @@ export default function WorkoutLogger() {
     setNewExercise("");
   };
 
+  // Add another set row to an existing exercise
   const addSet = (exerciseIndex) => {
     const updated = [...exercises];
     updated[exerciseIndex].sets.push({ weight: "", reps: "", notes: "" });
     setExercises(updated);
   };
 
+  // Handle editing weight/reps/notes within a set
   const handleSetChange = (exerciseIndex, setIndex, field, value) => {
     const updated = [...exercises];
     updated[exerciseIndex].sets[setIndex][field] = value;
     setExercises(updated);
   };
 
+  // Remove an exercise from the current workout
   const deleteExercise = (exerciseIndex) => {
     setExercises(exercises.filter((_, idx) => idx !== exerciseIndex));
   };
@@ -61,14 +67,14 @@ export default function WorkoutLogger() {
 
     let updated;
     if (editingWorkoutId) {
-      // update existing
+      // Editing an existing workout
       updated = workouts.map((w) =>
         w.id === editingWorkoutId ? workoutData : w
       );
       setMessage("✅ Workout updated!");
       setEditingWorkoutId(null);
     } else {
-      // new workout
+      // Creating a new workout
       updated = [...workouts, workoutData];
       setMessage("✅ Workout saved!");
     }
@@ -80,6 +86,7 @@ export default function WorkoutLogger() {
     setExercises([]);
   };
 
+  // Load a workout back into the editor for editing
   const editWorkout = (workout) => {
     setWorkoutDate(workout.date);
     setWorkoutName(workout.name);
@@ -89,6 +96,7 @@ export default function WorkoutLogger() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Clear the entire history
   const clearAllWorkouts = () => {
     if (!workouts.length) return;
     if (window.confirm("Clear all workouts? This cannot be undone.")) {
@@ -97,6 +105,7 @@ export default function WorkoutLogger() {
     }
   };
 
+  // Delete a single workout from the history
   const deleteWorkout = (id) => {
     if (window.confirm("Delete this workout?")) {
       setWorkouts(workouts.filter((w) => w.id !== id));
@@ -108,10 +117,12 @@ export default function WorkoutLogger() {
     }
   };
 
+  // Expand/collapse a workout card
   const toggleExpand = (id) => {
     setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
+  // Sort history newest → oldest
   const sortedHistory = [...workouts].sort((a, b) =>
     b.date.localeCompare(a.date)
   );
@@ -228,11 +239,12 @@ export default function WorkoutLogger() {
 
       {message && <p className="workout-message">{message}</p>}
 
+      {/* Save / update button */}
       <button className="primary-btn save-btn" type="button" onClick={saveWorkout}>
         {editingWorkoutId ? "Update Workout" : "Save Workout"}
       </button>
 
-      {/* History */}
+      {/* History header + clear all */}
       <div className="history-header-row">
         <h2 className="history-title">Workout History</h2>
         {sortedHistory.length > 0 && (
@@ -246,12 +258,14 @@ export default function WorkoutLogger() {
         )}
       </div>
 
+      {/* Empty history message */}
       {sortedHistory.length === 0 && (
         <p style={{ color: "#6b7280", textAlign: "center" }}>
           No workouts logged yet.
         </p>
       )}
 
+      {/* Collapsible history cards */}
       {sortedHistory.map((workout) => (
         <div key={workout.id} className="history-card block-card">
           <div

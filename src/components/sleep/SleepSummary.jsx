@@ -1,14 +1,18 @@
 import React, { useMemo } from "react";
 
+// Summary list of sleep logs + average hours
 export default function SleepSummary({ sleepLog, onDeleteSleep }) {
+  // Empty state
   if (!sleepLog.length) {
     return <p>No sleep entries logged yet.</p>;
   }
 
+  // Sort newest first
   const sorted = sleepLog
     .slice()
     .sort((a, b) => b.date.localeCompare(a.date));
 
+  // Compute overall average hours
   const avgHours = useMemo(() => {
     const total = sleepLog.reduce((sum, s) => sum + (s.hours || 0), 0);
     return (total / sleepLog.length).toFixed(1);
@@ -21,6 +25,7 @@ export default function SleepSummary({ sleepLog, onDeleteSleep }) {
         {sleepLog.length} day(s).
       </p>
 
+      {/* Simple vertical list of nights with a delete action */}
       <div
         style={{
           display: "flex",

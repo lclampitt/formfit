@@ -12,6 +12,7 @@ import {
   Line,
 } from "recharts";
 
+// Short date label for chart axes
 function formatShortDate(dateStr) {
   const d = new Date(dateStr);
   if (Number.isNaN(d.getTime())) return dateStr;
@@ -21,6 +22,7 @@ function formatShortDate(dateStr) {
   }); // e.g. "Dec 1"
 }
 
+// Turn a date into a "week starting" bucket
 function getWeekStart(dateStr) {
   const d = new Date(dateStr);
   if (Number.isNaN(d.getTime())) return null;
@@ -43,10 +45,12 @@ function getWeekStart(dateStr) {
   };
 }
 
+// Charts page: workouts per week + sleep trend
 export default function Progress() {
   const [workouts, setWorkouts] = useLocalStorage("formfit_workouts", []);
   const [sleepLog, setSleepLog] = useLocalStorage("formfit_sleep", []);
 
+  // Nuke all progress data
   const handleClearAll = () => {
     if (
       window.confirm(
@@ -102,6 +106,7 @@ export default function Progress() {
         Visualize your workout consistency and sleep patterns over time.
       </p>
 
+      {/* Clear-all button for progress data */}
       <div
         style={{
           display: "flex",

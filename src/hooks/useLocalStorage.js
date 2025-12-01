@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+// Tiny hook to sync state to window.localStorage
 export function useLocalStorage(key, initialValue) {
   const [value, setValue] = useState(() => {
     try {
@@ -11,6 +12,7 @@ export function useLocalStorage(key, initialValue) {
     }
   });
 
+  // Whenever the value changes, write it back to localStorage
   useEffect(() => {
     try {
       window.localStorage.setItem(key, JSON.stringify(value));

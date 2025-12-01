@@ -1,4 +1,4 @@
-/* Generic block card (for charts, sections) */
+/* Generic block card (used across the app) */
 .block-card {
   background: var(--card-bg);
   border-radius: 18px;
@@ -17,7 +17,7 @@
   box-shadow: 0 18px 35px rgba(15, 23, 42, 0.09);
 }
 
-/* Summary cards on dashboard */
+/* Summary cards on dashboard (top row) */
 .summary-card {
   background: var(--card-bg);
   border-radius: 18px;
@@ -30,11 +30,12 @@
   /* animation added below */
 }
 
-/* clickable variant */
+/* Clickable variant for cards that navigate somewhere */
 .summary-card.clickable {
   cursor: pointer;
 }
 
+/* Soft sheen overlay */
 .summary-card::before {
   content: "";
   position: absolute;
@@ -103,7 +104,7 @@
   text-align: center;
 }
 
-/* Weekly summary mini grid */
+/* Weekly summary mini grid (3 columns) */
 .weekly-summary-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -152,12 +153,13 @@
   }
 }
 
+/* Animate summary cards when they appear */
 .summary-card {
   animation: dashCardIn 0.4s ease forwards;
   opacity: 0;
 }
 
-/* stagger the three summary cards a bit */
+/* Stagger the three summary cards a bit */
 .dashboard-summary-row .summary-card:nth-child(1) {
   animation-delay: 0.05s;
 }
@@ -168,12 +170,13 @@
   animation-delay: 0.19s;
 }
 
-/* subtle animation for block cards in dashboard sections */
+/* Subtle animation for other dashboard block cards */
 .dashboard-card-anim {
   animation: dashCardIn 0.45s ease 0.25s forwards;
   opacity: 0;
 }
 
+/* Clickable checklist items (hover effect) */
 .checklist-click {
   cursor: pointer;
   border-radius: 12px;
@@ -188,7 +191,7 @@
   box-shadow: 0 4px 10px rgba(148, 163, 184, 0.35);
 }
 
-/* Main content container */
+/* Main content container (duplicated from layout for animation) */
 .app-main {
   max-width: 1100px;
   margin: 1.5rem auto 3rem;
@@ -245,6 +248,7 @@
   flex: 1;
 }
 
+/* Top row for adding a new exercise name */
 .exercise-adder {
   display: flex;
   gap: 0.5rem;
@@ -259,6 +263,7 @@
   margin-bottom: 0.75rem;
 }
 
+/* Exercise block header (title + delete button) */
 .exercise-header {
   display: flex;
   justify-content: space-between;
@@ -266,6 +271,7 @@
   margin-bottom: 0.4rem;
 }
 
+/* Sets table used in logger + history */
 .sets-table {
   width: 100%;
   border-collapse: collapse;
@@ -293,12 +299,13 @@
   width: 100%;
 }
 
-/* buttons */
+/* Buttons inside workout area */
 
 .add-set-btn {
   margin-top: 0.5rem;
 }
 
+/* Red-looking danger button variant */
 .danger-btn {
   background: #fee2e2;
   box-shadow: none;
@@ -310,12 +317,13 @@
   box-shadow: none;
 }
 
+/* Slightly smaller pill button */
 .small-btn {
   padding: 0.25rem 0.6rem;
   font-size: 0.8rem;
 }
 
-/* history */
+/* History section styling */
 
 .history-header-row {
   display: flex;
@@ -333,6 +341,7 @@
   margin-bottom: 0.75rem;
 }
 
+/* Header row for each history card (clickable) */
 .history-header {
   display: flex;
   justify-content: space-between;
@@ -369,7 +378,7 @@
   margin-top: 0.75rem;
 }
 
-/* ===== Progress page: weight & body fat charts ===== */
+/* ===== Progress page: weight & body fat charts (older progress styles) ===== */
 
 .progress-page .page-header-row {
   display: flex;
@@ -379,6 +388,7 @@
   margin-bottom: 1.5rem;
 }
 
+/* Legacy clear progress button style */
 .clear-progress-btn {
   border: none;
   border-radius: 999px;
@@ -429,6 +439,7 @@
   font-size: 0.9rem;
 }
 
+/* Generic pill-shaped primary button */
 .primary-btn {
   align-self: flex-start;
   border-radius: 999px;
@@ -441,7 +452,7 @@
   font-weight: 600;
 }
 
-/* grid of the two charts */
+/* Grid of the two charts (older layout) */
 .progress-charts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -477,7 +488,7 @@
   margin-top: 1rem;
 }
 
-/* mobile tweaks */
+/* Progress page mobile tweaks */
 @media (max-width: 640px) {
   .progress-page .page-header-row {
     flex-direction: column;

@@ -1,30 +1,36 @@
 import React, { useState } from "react";
 
+// List of journal entries with inline edit / delete
 export default function JournalList({ journal, onDeleteEntry, onUpdateEntry }) {
   const [editingId, setEditingId] = useState(null);
   const [editTitle, setEditTitle] = useState("");
   const [editContent, setEditContent] = useState("");
 
+  // Empty state
   if (!journal.length) {
     return <p>No journal entries yet.</p>;
   }
 
+  // Newest first
   const sorted = journal
     .slice()
     .sort((a, b) => b.date.localeCompare(a.date));
 
+  // Start editing a specific entry
   const startEdit = (entry) => {
     setEditingId(entry.id);
     setEditTitle(entry.title);
     setEditContent(entry.content);
   };
 
+  // Drop edit mode and reset fields
   const cancelEdit = () => {
     setEditingId(null);
     setEditTitle("");
     setEditContent("");
   };
 
+  // Save changes back up to the parent
   const saveEdit = (entry) => {
     onUpdateEntry({
       ...entry,
@@ -64,6 +70,7 @@ export default function JournalList({ journal, onDeleteEntry, onUpdateEntry }) {
                 gap: "0.75rem",
               }}
             >
+              {/* Left side: date + title + content / edit fields */}
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: "0.85rem", opacity: 0.7 }}>
                   {entry.date}
@@ -97,6 +104,7 @@ export default function JournalList({ journal, onDeleteEntry, onUpdateEntry }) {
                 )}
               </div>
 
+              {/* Right side: action buttons */}
               <div
                 style={{
                   display: "flex",

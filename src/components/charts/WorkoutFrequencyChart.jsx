@@ -9,7 +9,7 @@ import {
   CartesianGrid,
 } from "recharts";
 
-// group by week-of-year label like "W48 2025"
+// Turn a date into a week label like "W12 2025"
 function getWeekKey(dateStr) {
   const d = new Date(dateStr);
   if (Number.isNaN(d)) return "Unknown";
@@ -22,7 +22,9 @@ function getWeekKey(dateStr) {
   return `W${week} ${year}`;
 }
 
+// Bar chart showing how many workouts per week
 export default function WorkoutFrequencyChart({ workouts = [] }) {
+  // Friendly empty state
   if (!workouts.length) {
     return (
       <p style={{ color: "#9ca3af", fontSize: "0.9rem" }}>
@@ -31,12 +33,14 @@ export default function WorkoutFrequencyChart({ workouts = [] }) {
     );
   }
 
+  // Count workouts per week key
   const counts = workouts.reduce((acc, w) => {
     const key = getWeekKey(w.date);
     acc[key] = (acc[key] || 0) + 1;
     return acc;
   }, {});
 
+  // Convert the map into an array for Recharts
   const data = Object.entries(counts).map(([week, count]) => ({
     week,
     count,

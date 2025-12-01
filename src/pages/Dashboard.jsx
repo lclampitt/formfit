@@ -46,9 +46,11 @@ function withinLastNDays(dateStr, n) {
   return diffDays >= 0 && diffDays <= n;
 }
 
+// Main home screen: quick stats, checklist, and weekly snapshot
 export default function Dashboard() {
   const navigate = useNavigate();
 
+  // core data pulled from storage (later Supabase)
   const [workouts] = useLocalStorage("formfit_workouts", []);
   const [sleepLog] = useLocalStorage("formfit_sleep", []);
   const [journal] = useLocalStorage("formfit_journal", []);
@@ -62,12 +64,14 @@ export default function Dashboard() {
   const lastWorkout = workouts[workouts.length - 1] || null;
   const latestJournal = journal[journal.length - 1] || null;
 
+  // Overall average sleep across all entries
   const avgSleep = useMemo(() => {
     if (!sleepLog.length) return null;
     const total = sleepLog.reduce((sum, s) => sum + (s.hours || 0), 0);
     return (total / sleepLog.length).toFixed(1);
   }, [sleepLog]);
 
+  // Streaks for each habit
   const workoutStreak = computeStreak(workouts.map((w) => w.date));
   const sleepStreak = computeStreak(sleepLog.map((s) => s.date));
   const journalStreak = computeStreak(journal.map((j) => j.date));
@@ -82,7 +86,7 @@ export default function Dashboard() {
   );
   const wroteJournalToday = journal.some((j) => j.date === todayStr);
 
-  // effective checklist state for today:
+  // auto-filled default state for today based on data
   const defaultTodayChecklist = {
     workout: didWorkoutToday,
     sleep: loggedSleepLastNight,
@@ -92,6 +96,7 @@ export default function Dashboard() {
   const todayChecklist =
     checklistByDate[todayStr] || defaultTodayChecklist;
 
+  // Toggle a single checklist item for today
   const toggleChecklist = (field) => {
     setChecklistByDate((prev) => {
       const existing = prev[todayStr] || defaultTodayChecklist;

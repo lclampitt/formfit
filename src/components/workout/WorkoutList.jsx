@@ -1,7 +1,9 @@
 // src/components/workout/WorkoutList.jsx
 import React from "react";
 
+// Read-only list of saved workout sessions
 export default function WorkoutList({ workouts = [], onDeleteWorkout }) {
+  // Empty state message
   if (!workouts.length) {
     return (
       <p style={{ color: "#6b7280", marginTop: "1rem" }}>
@@ -11,6 +13,7 @@ export default function WorkoutList({ workouts = [], onDeleteWorkout }) {
     );
   }
 
+  // Newest workouts first
   const sorted = [...workouts].sort((a, b) =>
     b.date.localeCompare(a.date)
   );
@@ -24,6 +27,7 @@ export default function WorkoutList({ workouts = [], onDeleteWorkout }) {
           key={session.id}
           className="block-card workout-session-card"
         >
+          {/* Session header with date, name, and optional delete */}
           <div className="workout-session-header">
             <div className="workout-session-title">
               <span className="workout-session-date">
@@ -44,6 +48,7 @@ export default function WorkoutList({ workouts = [], onDeleteWorkout }) {
             )}
           </div>
 
+          {/* Per-exercise breakdown for this session */}
           <table className="workout-table">
             <thead>
               <tr>

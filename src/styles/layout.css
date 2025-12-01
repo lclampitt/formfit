@@ -12,20 +12,21 @@
 }
 
 /* ---------------- NAVBAR ---------------- */
+/* Top gradient bar with centered inner content */
 .navbar {
   padding: 0.75rem 0; /* remove side padding here */
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   background: linear-gradient(90deg, #ff6cab 0%, #ff9a62 30%, #7366ff 100%);
   display: flex;
-  justify-content: center;    /* center the inner band */
+  justify-content: center;
   color: #ffffff;
 }
 
-/* NEW: inner centered band, same width as app-main/footer */
+/* Constrains navbar content to 1100px and aligns logo + links */
 .navbar-inner {
   width: 100%;
   max-width: 1100px;
-  padding: 0 1.5rem;          /* horizontal padding lives here now */
+  padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -77,8 +78,8 @@
   opacity: 1;
 }
 
-
 /* ---------------- MAIN CONTENT ---------------- */
+/* Centers page content and keeps footer from overlapping */
 .app-main {
   flex: 1;                     /* fills space between navbar & footer */
   max-width: 1100px;
@@ -91,6 +92,7 @@
 }
 
 /* ---------------- FOOTER ---------------- */
+/* Gradient footer locked to bottom of viewport */
 .app-footer {
   background: linear-gradient(
     90deg,
@@ -185,6 +187,7 @@ body::after {
   }
 }
 
+/* Logout button in navbar */
 .nav-logout-btn {
   border: 1px solid rgba(255, 255, 255, 0.7);
   background: transparent;

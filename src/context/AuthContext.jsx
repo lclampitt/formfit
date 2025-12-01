@@ -4,18 +4,19 @@ import { supabase } from "../supabaseClient";
 
 const AuthContext = createContext(null);
 
+// Wraps the app and exposes Supabase auth session/user
 export function AuthProvider({ children }) {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Initial session
+    // Grab initial session on page load
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session ?? null);
       setLoading(false);
     });
 
-    // Listen to auth changes
+    // Subscribe to login/logout events
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, newSession) => {
@@ -36,6 +37,7 @@ export function AuthProvider({ children }) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
+// Simple hook so components can read auth state
 export function useAuth() {
   return useContext(AuthContext);
 }

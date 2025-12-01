@@ -1,7 +1,9 @@
+/* Pull in layout + components styles */
 @import "./layout.css";
 @import "./cards.css";
 @import "./form.css";
 
+/* Global design tokens */
 :root {
   --bg: #f5f7fb;
   --card-bg: #ffffff;
@@ -11,24 +13,27 @@
   --muted: #6b7280;
 }
 
+/* Basic reset-ish box sizing */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   height: 100%;
 }
 
-/* REMOVE the old page-wide gradient */
+/* Base body typography + background */
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: #eef2ff; /* fallback background */
   color: var(--text);
 }
 
+/* Remove default top margins for headings/paragraphs */
 h1,
 h2,
 h3,

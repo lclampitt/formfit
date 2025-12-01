@@ -1,12 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+// Simple footer with navigation + little brand blurb
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="app-footer">
       <div className="app-footer-inner">
+        {/* Left side: app name + description */}
         <div className="app-footer-left">
           <div className="footer-brand">FormFit</div>
           <div className="footer-text">
@@ -17,6 +19,7 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Right side: app links + stubbed info links */}
         <div className="app-footer-right">
           <div className="footer-column">
             <div className="footer-heading">App</div>

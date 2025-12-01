@@ -12,6 +12,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
 import "./styles/global.css";
 
+// Top-level router + providers for the whole app
 export default function App() {
   return (
     <AuthProvider>

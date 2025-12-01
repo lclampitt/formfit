@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 
+// Form for logging a single night of sleep
 export default function SleepForm({ onAddSleep }) {
   const today = new Date().toISOString().slice(0, 10);
 
+  // Local form state
   const [date, setDate] = useState(today);
   const [hours, setHours] = useState("");
   const [quality, setQuality] = useState("Good");
 
+  // Build a sleep entry and send it up to the parent
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!hours) return;
@@ -24,6 +27,7 @@ export default function SleepForm({ onAddSleep }) {
 
   return (
     <form className="form-card" onSubmit={handleSubmit}>
+      {/* Date picker */}
       <div className="form-row">
         <label>
           Date
@@ -35,6 +39,7 @@ export default function SleepForm({ onAddSleep }) {
         </label>
       </div>
 
+      {/* Hours + quality side by side */}
       <div className="form-row-inline">
         <label>
           Hours slept

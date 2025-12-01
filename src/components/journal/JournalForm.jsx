@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 
+// Simple form for creating a single journal entry
 export default function JournalForm({ onAddEntry }) {
   const today = new Date().toISOString().slice(0, 10);
 
+  // Local form state
   const [date, setDate] = useState(today);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+  // Build an entry object and send it up to the parent
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!content.trim()) return;
@@ -25,6 +28,7 @@ export default function JournalForm({ onAddEntry }) {
 
   return (
     <form className="form-card" onSubmit={handleSubmit}>
+      {/* Top row: date + title */}
       <div className="form-row-inline">
         <label>
           Date
@@ -46,6 +50,7 @@ export default function JournalForm({ onAddEntry }) {
         </label>
       </div>
 
+      {/* Main textarea for the reflection */}
       <div className="form-row">
         <label>
           Reflection

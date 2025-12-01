@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import NavBar from "./NavBar.jsx";
 import Footer from "./Footer.jsx";
 
+// Overall page shell: navbar → main content → footer
 export default function Layout() {
   const location = useLocation();
 

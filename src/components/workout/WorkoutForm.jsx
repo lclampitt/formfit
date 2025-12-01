@@ -1,9 +1,11 @@
 // src/components/workout/WorkoutForm.jsx
 import React, { useState } from "react";
 
+// Builder form for creating a single workout session (multiple exercises)
 export default function WorkoutForm({ onAddWorkout }) {
   const today = new Date().toISOString().slice(0, 10);
 
+  // Top-level workout info + current exercise being edited
   const [date, setDate] = useState(today);
   const [workoutName, setWorkoutName] = useState("");
   const [exerciseName, setExerciseName] = useState("");
@@ -12,8 +14,10 @@ export default function WorkoutForm({ onAddWorkout }) {
   const [weight, setWeight] = useState("");
   const [notes, setNotes] = useState("");
 
+  // List of exercises for this workout
   const [exercises, setExercises] = useState([]);
 
+  // Add a single exercise row to the workout
   const handleAddExercise = (e) => {
     e.preventDefault();
 
@@ -38,10 +42,12 @@ export default function WorkoutForm({ onAddWorkout }) {
     setNotes("");
   };
 
+  // Remove a single exercise from the list
   const handleRemoveExercise = (id) => {
     setExercises(exercises.filter((ex) => ex.id !== id));
   };
 
+  // Save the whole workout session and reset
   const handleSaveWorkout = (e) => {
     e.preventDefault();
     if (!exercises.length) return;
@@ -86,7 +92,7 @@ export default function WorkoutForm({ onAddWorkout }) {
         </label>
       </div>
 
-      {/* Exercise inputs */}
+      {/* Exercise name input */}
       <div className="form-row">
         <label>
           Exercise
@@ -99,6 +105,7 @@ export default function WorkoutForm({ onAddWorkout }) {
         </label>
       </div>
 
+      {/* Sets / reps / weight inputs */}
       <div className="form-row-inline">
         <label>
           Sets
@@ -129,6 +136,7 @@ export default function WorkoutForm({ onAddWorkout }) {
         </label>
       </div>
 
+      {/* Optional notes for this exercise */}
       <div className="form-row">
         <label>
           Notes
@@ -141,6 +149,7 @@ export default function WorkoutForm({ onAddWorkout }) {
         </label>
       </div>
 
+      {/* Add exercise + save workout actions */}
       <div className="workout-builder-actions">
         <button
           type="button"
@@ -158,7 +167,7 @@ export default function WorkoutForm({ onAddWorkout }) {
         </button>
       </div>
 
-      {/* Current exercises table */}
+      {/* Table showing the current workout being built */}
       {exercises.length > 0 && (
         <div className="workout-current-list">
           <h3>Current Workout</h3>

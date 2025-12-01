@@ -5,10 +5,12 @@ import logoImg from "../assets/formfit.png";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../supabaseClient";
 
+// Top navigation: logo, page links, and auth button
 export default function NavBar() {
   const { session } = useAuth();
   const navigate = useNavigate();
 
+  // Sign out via Supabase and send user back to auth page
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate("/auth", { replace: true });
@@ -16,8 +18,9 @@ export default function NavBar() {
 
   return (
     <header className="navbar">
-      {/* NEW inner container so we can center the whole cluster */}
+      {/* Centered inner band (matches app-main width) */}
       <div className="navbar-inner">
+        {/* Brand logo + text */}
         <div className="navbar-logo">
           <img
             src={logoImg}
@@ -27,6 +30,7 @@ export default function NavBar() {
           <span className="navbar-logo-text">FormFit</span>
         </div>
 
+        {/* Navigation links + auth button */}
         <nav className="navbar-links">
           {session && (
             <>

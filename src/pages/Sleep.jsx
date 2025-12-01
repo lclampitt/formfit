@@ -4,17 +4,21 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import SleepForm from "../components/sleep/SleepForm.jsx";
 import SleepSummary from "../components/sleep/SleepSummary.jsx";
 
+// Page for logging and reviewing sleep entries
 export default function Sleep() {
   const [sleepLog, setSleepLog] = useLocalStorage("formfit_sleep", []);
 
+  // Add one sleep entry
   const handleAddSleep = (entry) => {
     setSleepLog([...sleepLog, entry]);
   };
 
+  // Remove one entry from the log
   const handleDeleteSleep = (id) => {
     setSleepLog(sleepLog.filter((s) => s.id !== id));
   };
 
+  // Clear entire sleep history
   const handleClearSleep = () => {
     if (
       window.confirm(
@@ -32,8 +36,10 @@ export default function Sleep() {
         Track your sleep hours and quality.
       </p>
 
+      {/* Form for adding a new sleep record */}
       <SleepForm onAddSleep={handleAddSleep} />
 
+      {/* Header + clear button for the history section */}
       <div
         style={{
           display: "flex",
@@ -48,6 +54,7 @@ export default function Sleep() {
         )}
       </div>
 
+      {/* List + summary of all sleep entries */}
       <SleepSummary
         sleepLog={sleepLog}
         onDeleteSleep={handleDeleteSleep}

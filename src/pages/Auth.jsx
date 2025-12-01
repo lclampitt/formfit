@@ -4,6 +4,7 @@ import { supabase } from "../supabaseClient";
 import { useNavigate } from "react-router-dom";
 import "../styles/auth.css";
 
+// Login / register screen backed by Supabase auth
 function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,6 +14,7 @@ function AuthPage() {
   const [busy, setBusy] = useState(false);
   const navigate = useNavigate();
 
+  // Handle sign in or sign up depending on isLogin
   const handleAuth = async (e) => {
     e.preventDefault();
     setMessage("");
@@ -47,6 +49,7 @@ function AuthPage() {
     }
   };
 
+  // Switch between login and register modes
   const toggleMode = () => {
     setIsLogin((prev) => !prev);
     setMessage("");
@@ -65,6 +68,7 @@ function AuthPage() {
             : "Create an account to start saving your FormFit data securely."}
         </p>
 
+        {/* Email + password form */}
         <form className="auth-form" onSubmit={handleAuth}>
           <input
             type="email"
@@ -94,6 +98,7 @@ function AuthPage() {
           </button>
         </form>
 
+        {/* Toggle login/register */}
         <p className="switch-text" onClick={toggleMode}>
           {isLogin ? (
             <>
@@ -106,6 +111,7 @@ function AuthPage() {
           )}
         </p>
 
+        {/* Status message area */}
         {message && (
           <p
             className={`auth-message ${

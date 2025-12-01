@@ -1,5 +1,6 @@
 import React from "react";
 
+// Small dashboard card (optionally clickable)
 export default function SummaryCard({ title, value, subtitle, onClick, className = "" }) {
   const clickable = Boolean(onClick);
 

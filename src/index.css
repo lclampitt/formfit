@@ -1,3 +1,5 @@
+/* Legacy navbar styles from the starter project.
+   Current app uses .navbar in layout.css instead. */
 .navbar {
   padding: 0.75rem 1.5rem;
   border-bottom: 1px solid rgba(0, 207, 255, 0.3);
